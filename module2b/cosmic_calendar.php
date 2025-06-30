@@ -20,19 +20,32 @@
         <h1>Cosmic Calendar</h1>
         <div class="calendar-grid">
 <?php
+
+    //Create a variable to store your first name
+    $firstName = "Jos";
+
     // Fetch the raw JSON string from the URL
     $jsonString = file_get_contents('https://timeapi.io/api/time/current/zone?timeZone=America%2FLos_Angeles');
 
     // Decode the JSON string into a PHP object
     $data = json_decode($jsonString);
 
-    // Extract the date data from the response and determine $dayOfYear
-    $dateTimeString = $data->dateTime;
-    $date = new DateTime($dateTimeString);
-    $dayOfYear = (int)$date->format('z') + 1;
-    $month = $data->month;
+    // Use strlen() to calculate your name length.
+    $nameLength = strlen($firstName);
 
-echo "Today is day number: " . $dayOfYear; echo "<br>"; echo "The current month is: " . $month; ?>
+    // Extract dateTime from the API object
+    $dateTimeString = $data->dateTime;
+
+    // Create a DateTime object from the dateTime string
+    $date = new DateTime($dateTimeString);
+
+    // Write a for loop that starts at your name’s length and ends at the current day of the year.
+    for ($i = $nameLength; $i <= $date->format('z') + 1; $i++) {
+        echo $i . " <br>";
+    }
+
+    ?>
+
         </div>
     </div>
 </body>
