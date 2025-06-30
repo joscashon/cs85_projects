@@ -59,6 +59,14 @@
             echo "<ul>" . $details . "</ul>";
             echo "<ul><li><span class='total'>Final Price:</span> <span class='total'>$" . number_format($finalPrice, 2) . "</span></li></ul>";
 
+/*
+MY DEBUGGING LOG:
+Problem: I tried changing the variable values in the configuration section, but after saving the code and
+refreshing the page in my browser, the price didn't change as expected.
+Solution: I realized I had never changed the url in the browser to point to the new refactored file,
+so I was still viewing the old price_engine.php file. I updated the URL to point to the new
+price_engine_refactored.php file, and now the prices change as expected when I modify the configuration values.
+*/
 
         ?>
     </div>
