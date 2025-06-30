@@ -39,10 +39,40 @@
     // Create a DateTime object from the dateTime string
     $date = new DateTime($dateTimeString);
 
+    // Get current day of the year from the DateTime object
+    $currentDayOfYear = $date->format('z') + 1;
+
+    // Get the current month from the DateTime object
+    $currentMonth = $date->format('n');
+
     // Write a for loop that starts at your name’s length and ends at the current day of the year.
-    for ($i = $nameLength; $i <= $date->format('z') + 1; $i++) {
-        echo $i . " <br>";
+    // Inside the loop, start a variable called $cssClass with the value "day-box"
+    // Use if / elseif / else to apply the right class:
+    // If divisible by both name length and month → add cosmic-both
+    // If only divisible by name length → add cosmic-name
+    // If only divisible by month → add cosmic-month
+    for ($i = $nameLength; $i <= $currentDayOfYear; $i++) {
+        $cssClass = "day-box";
+
+        if ($i % $nameLength == 0 && $i % $currentMonth == 0) {
+            $cssClass .= " cosmic-both";
+        } elseif ($i % $nameLength == 0) {
+            $cssClass .= " cosmic-name";
+        } elseif ($i % $currentMonth == 0) {
+            $cssClass .= " cosmic-month";
+        }
+        // Inside the loop, use echo to print a <div> with the right class and the number inside it.
+        // Example: echo "<div class='$cssClass'>$i</div>";
+        echo '<div class="' . $cssClass . '">' . $i . '</div>';
+
+
     }
+    /*
+    My Debugging Log:
+    Problem: I was getting an error about an undefined variable $dayOfYear
+    Solution: I realized I still had the old variable name $dayOfYear from the example API code in my for loop.
+    I changed it to $currentDayOfYear as I had defined above, and it worked.
+    */
 
     ?>
 
