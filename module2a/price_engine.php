@@ -26,13 +26,6 @@
             $finalPrice = 22.50;
             $details = "<li>Base Price: <span>$" . number_format($finalPrice, 2) . "</span></li>";
 
-            // Your nested if-statement logic goes here...
-            // Example of a rule:
-            // if ($size == 'L') {
-            //     $finalPrice = $finalPrice + 1.75;
-            //     $details .= "<li>Size (L) Upcharge: <span>+$1.75</span></li>";
-            // }
-
             if($size == 'L') {
                 $finalPrice = $finalPrice + 1.75;
                 $details .= "<li>Size (L) Upcharge: <span>+$1.75</span></li>";
