@@ -18,9 +18,9 @@
         <?php
             // --- Configuration: Change these values to test all business rules! ---
             $size = 'XL'; // Options: 'S', 'M', 'L', 'XL'
-            $color = 'Sunset Orange'; // Any string, but test with 'Sunset Orange' or 'Ocean Blue'
+            $color = 'Ocean Blue'; // Any string, but test with 'Sunset Orange' or 'Ocean Blue'
             $isCustomized = true; // Options: true, false
-            $customerFirstName = 'YourFirstName'; // <-- IMPORTANT: REPLACE WITH YOUR ACTUAL FIRST NAME
+            $customerFirstName = 'Jos'; // <-- IMPORTANT: REPLACE WITH YOUR ACTUAL FIRST NAME
 
             // --- Part A: Implement the logic below using ONLY simple, nested if-statements ---
             $finalPrice = 22.50;
@@ -32,6 +32,35 @@
             //     $finalPrice = $finalPrice + 1.75;
             //     $details .= "<li>Size (L) Upcharge: <span>+$1.75</span></li>";
             // }
+
+            if($size == 'L') {
+                $finalPrice = $finalPrice + 1.75;
+                $details .= "<li>Size (L) Upcharge: <span>+$1.75</span></li>";
+            }
+            if($size == 'XL') {
+                $finalPrice = $finalPrice + 2.50;
+                $details .= "<li>Size (XL) Upcharge: <span>+$2.50</span></li>";
+            }
+            if($color == 'Sunset Orange') {
+                $finalPrice = $finalPrice + 2.00;
+                $details .= "<li>Color (Sunset Orange) Upcharge: <span>+$2.00</span></li>";
+            }
+            if($color == 'Ocean Blue') {
+                $finalPrice = $finalPrice + 2.00;
+                $details .= "<li>Color (Ocean Blue) Upcharge: <span>+$2.00</span></li>";
+            }
+            if($isCustomized == true) {
+                $finalPrice = $finalPrice + 5.00;
+                $details .= "<li>Customization Fee: <span>+$5.00</span></li>";
+                if($size == 'XL') {
+                    $finalPrice = $finalPrice + 3.00;
+                    $details .= "<li>Customization Fee (XL) Upcharge: <span>+$3.00</span></li>";
+                }
+            }
+            if(strlen($customerFirstName) > 6) {
+                $finalPrice = $finalPrice - 1.00;
+                $details .= "<li>Long Name Discount: <span>-$1.00</span></li>";
+            }
 
 
             // --- DO NOT EDIT BELOW THIS LINE ---
