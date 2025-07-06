@@ -68,6 +68,23 @@ $Email = "";
 $Subject = "";
 $Message = "";
 
+// Check for and validate form submission
+// If there is a POST request with the submit button, validate the inputs
+// If there are no errors, set $ShowForm to FALSE to hide the form and display a thank you message
+// If there are errors, set $ShowForm to TRUE to display the form again
+if (isset($_POST['submit'])) {
+    $Sender = validateInput($_POST['Sender'], "Your Name");
+    $Email = validateEmail($_POST['Email'], "Your Email");
+    $Subject = validateInput($_POST['Subject'], "Subject");
+    $Message = validateInput($_POST['Message'], "Message");
+
+    // If there are no errors, display a thank you message
+    if ($errorCount == 0) 
+        $ShowForm = FALSE;
+    else
+        $ShowForm = TRUE;
+}
+
 ?>
 
 </body>
