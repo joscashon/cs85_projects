@@ -85,6 +85,27 @@ if (isset($_POST['submit'])) {
         $ShowForm = TRUE;
 }
 
+// If the form is being displayed for the first time or if there are errors, show the form
+// If there are no errors, send the email and display a thank you message
+if ($ShowForm == TRUE) {
+    if ($errorCount > 0) {
+        echo "<p>Please re-enter the form information below.</p>\n";
+        displayForm($Sender, $Email, $Subject, $Message);
+    }
+    else {
+        $SenderAddress = "$Sender <$Email>";
+        $Headers = "From: $SenderAddress\nCC: $SenderAddress\n";
+
+        $result = mail("recipient@example.com", $Subject, $Message, $Headers);
+
+        if ($result) {
+            echo "<p>Your message has been sent. Thank you, " . $Sender . ".</p>\n";
+        } else {
+            echo "<p> There was an error sending your message, " . $Sender . ".</p>\n";
+        }
+    }
+}
+
 ?>
 
 </body>
