@@ -21,6 +21,25 @@ function validateInput($data, $fieldname) {
     }
     return $retval;
 }
+
+// This function will validate the email input from the form
+// It will check if the input is empty and return an error message if it is
+// It will also sanitize the email and validate it using PHP's filter_var function
+// If the email is not valid, it will return an error message
+function validateEmail($data, $fieldname) {
+    global $errorCount;
+    if (empty($data)) {
+        echo "\"$fieldname\" is a required field.<br />\n";
+        ++$errorCount; $retval = "";
+    }
+    else {
+        $retval = filter_var($data, FILTER_SANITIZE_EMAIL);
+        if (!filter_var($retval, FILTER_VALIDATE_EMAIL)) {
+            echo "\"$fieldname\" is not a valid email address.<br />\n";
+        }
+    }
+    return ($retval);
+}
 ?>
 </body>
 </html>
