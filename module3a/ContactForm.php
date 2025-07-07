@@ -5,6 +5,7 @@
 </head>
 <body>
 <?php
+
 // This function will validate the input from the form
 // It will check if the input is empty and return an error message if it is
 // It will also clean up the input by trimming whitespace and removing slashes
@@ -85,7 +86,7 @@ if (isset($_POST['submit'])) {
         $ShowForm = TRUE;
 }
 
-// If the form is being displayed for the first time or if there are errors, show the form
+// If the form is being displayed or if there are errors, show the form
 // If there are no errors, send the email and display a thank you message
 if ($ShowForm == TRUE) {
     if ($errorCount > 0) {
@@ -105,6 +106,36 @@ if ($ShowForm == TRUE) {
         }
     }
 }
+
+// The above code is all untested because it requires an SMTP server to send emails.
+// PHP's mail function doesn't seem to have any way to provide authentication.
+// Right now, the page only displays a message saying:
+// "Warning: mail(): Failed to connect to mailserver at "localhost" port 25, verify your "SMTP" and "smtp_port" setting in php.ini or use ini_set() in C:\Users\User\Desktop\cs85_projects\module3a\ContactForm.php on line 100
+// There was an error sending your message, ."
+
+/*  
+    Reflection:
+
+    What does each function do?
+        validateInput: Sanitizes and validates user input
+        validateEmail: Validates and sanitizes email input
+        displayForm: Displays the contact form with pre-filled values
+
+    How is user input protected?
+        User input is protected through sanitization and validation functions that remove harmful characters
+        and ensure the data is in the expected format.
+
+    What were the most confusing parts?
+        The email validation process and the use of PHP's mail function could be confusing for beginners. It would be helpful
+        to provide more context on how email sending works in PHP and the requirements for it to function properly.
+
+    What could be improved?
+        The email validation process could be made more robust by checking for common email address patterns.
+
+    Why send a copy of the form to the sender?
+        Sending a copy of the form to the sender provides them with a record of their submission and helps to confirm
+        that their message was sent successfully.
+*/
 
 ?>
 
