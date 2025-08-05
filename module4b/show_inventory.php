@@ -33,6 +33,17 @@
   } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
   }
+  
+/*
+I chose these items because they fit the theme of the other items given in the
+starter code. This could scale to real world inventory systems by allowing
+users to add, update, and delete items, as well as track their quantities and
+purchase dates. Any items added to the inventory_db database using mySQL
+commands will automatically be updated. Using PDO protects against SQL injection
+by using prepared statements and parameterized queries, which is a best practice
+for database interactions.
+*/
+  
   ?>
 </body>
 </html>
