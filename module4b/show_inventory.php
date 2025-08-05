@@ -15,8 +15,18 @@
     $stmt = $db->query("SELECT * FROM items");
     $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    foreach ($items as $item) {
-      echo "<p>{$item['item_name']} ({$item['quantity']} units)</p>";
+    if (count($items) > 0) {
+      echo '<table border="1" cellpadding="8" cellspacing="0">';
+      echo '<tr><th>Item Name</th><th>Quantity</th></tr>';
+      foreach ($items as $item) {
+        echo '<tr>';
+        echo '<td>' . htmlspecialchars($item['item_name']) . '</td>';
+        echo '<td>' . htmlspecialchars($item['quantity']) . '</td>';
+        echo '</tr>';
+      }
+      echo '</table>';
+    } else {
+      echo '<p>No items found.</p>';
     }
 
   } catch (PDOException $e) {
